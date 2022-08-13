@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islamii_app/homepage.dart';
+import 'package:islamii_app/quran/SuraDetailsScreen.dart';
+import 'package:islamii_app/sebha/Sebha-tap.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,11 +17,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: MythemeData.primarycolor),
-      title: 'Flutter Demo',
+      theme: ThemeData(primaryColor: MythemeData.primarycolor,
+        appBarTheme: AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.brown),
+        ),
+    ),
+
       debugShowCheckedModeBanner: false,
       routes: {
-       Homepage.Routename:(buildContext)=>Homepage()
+       Homepage.Routename:(buildContext)=>Homepage(),
+        SuraDetailsScreen.Routename:(buildContext)=>SuraDetailsScreen()
       },
       initialRoute: Homepage.Routename,
 

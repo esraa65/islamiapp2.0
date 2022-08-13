@@ -5,7 +5,7 @@ import '../main.dart';
 
 class QuranTap extends StatelessWidget {
   final List<String> SuraNames = [
-    "لفاتحه",
+    "الفاتحه",
     "البقرة",
     "آل عمران",
     "النساء",
@@ -155,4 +155,4 @@ class QuranTap extends StatelessWidget {
     );
   }
 }
-// 2lby htla2yh dafy brdo w by2ol b7b bakii w 3rfa eh kman ?
+
