@@ -46,13 +46,13 @@ class _HomepageState extends State<Homepage> {
                   BottomNavigationBarItem(
                       label: 'quran',
                       icon: Image.asset(
-                        'assets/images/quran-quran-book.png',
+                        'assets/images/quran.png',
                         width: 48,
                       )),
                   BottomNavigationBarItem(
                       label: 'hadeth',
                       icon: Image.asset(
-                        'assets/images/quran-icon.png',
+                        'assets/images/quran-quran-book.png',
                         width: 48,
                       )),
                   BottomNavigationBarItem(

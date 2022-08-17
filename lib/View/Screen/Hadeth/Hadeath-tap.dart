@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islamii_app/Model/Hadethdataclass.dart';
+import 'package:islamii_app/View/Widget/Hadethnameitem.dart';
+
+import '../../../constants.dart';
 
 class HadeathTap extends StatefulWidget {
   @override
@@ -12,6 +16,20 @@ class _HadeathTapState extends State<HadeathTap> {
     if (allhadeth.isEmpty) LoadHadethFile();
     return Column(children: [
       Expanded(child: Image.asset('assets/images/hadeth_top_logo.png')),
+      Container(
+        height: 1,
+        width: double.infinity,
+        color: MythemeData.primarycolor,
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text('all hadeth ', style: TextStyle(fontSize: 25)),
+      ),
+      Container(
+        height: 1,
+        width: double.infinity,
+        color: MythemeData.primarycolor,
+      ),
       Expanded(
           child: Container(
               child: allhadeth.isEmpty
@@ -20,9 +38,16 @@ class _HadeathTapState extends State<HadeathTap> {
                       valueColor: new AlwaysStoppedAnimation<Color>(
                           Color.fromARGB(183, 147, 95, 1)),
                     ))
-                  : ListView.builder(
+                  : ListView.separated(
+                      separatorBuilder: (buildContext, index) {
+                        return Container(
+                          height: 1,
+                          width: double.infinity,
+                          color: MythemeData.primarycolor,
+                        );
+                      },
                       itemBuilder: (buildContext, index) {
-                        return Text(allhadeth[index].title);
+                        return HadethNameItem(allhadeth[index]);
                       },
                       itemCount: allhadeth.length,
                     )))
@@ -46,11 +71,4 @@ class _HadeathTapState extends State<HadeathTap> {
     }
     setState(() {});
   }
-}
-
-class HadethDataClass {
-  String title;
-  String Content;
-
-  HadethDataClass(this.title, this.Content);
 }
