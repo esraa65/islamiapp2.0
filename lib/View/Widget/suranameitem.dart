@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:islamii_app/quran/SuraDetailsScreen.dart';
+import 'package:islamii_app/Model/SuraData.dart';
+
+import '../Screen/quran/SuraDetailsScreen.dart';
 
 class SuraNameItem extends StatelessWidget {
  String suraName;

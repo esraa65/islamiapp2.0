@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:islamii_app/hadeath/Hadeath-tap.dart';
-import 'package:islamii_app/main.dart';
-import 'package:islamii_app/quran/Quran-tap.dart';
-import 'package:islamii_app/radio/Radio-tap.dart';
-import 'package:islamii_app/sebha/Sebha-tap.dart';
+import 'Hadeth/Hadeath-tap.dart';
+import 'quran/Quran-tap.dart';
+import 'Radio-tap.dart';
+import 'sebha/Sebha-tap.dart';
+import '../../constants.dart';
 
 class Homepage extends StatefulWidget {
   static const String Routename = 'home';
@@ -50,7 +50,7 @@ class _HomepageState extends State<Homepage> {
                         width: 48,
                       )),
                   BottomNavigationBarItem(
-                      label: 'moshaf',
+                      label: 'hadeth',
                       icon: Image.asset(
                         'assets/images/quran-icon.png',
                         width: 48,
