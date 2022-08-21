@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'Hadeth/Hadeath-tap.dart';
-import 'quran/Quran-tap.dart';
-import 'Radio-tap.dart';
-import 'sebha/Sebha-tap.dart';
+import 'package:islamii_app/Model/Tabs_data.dart';
 import '../../constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Homepage extends StatefulWidget {
   static const String Routename = 'home';
@@ -25,7 +23,7 @@ class _HomepageState extends State<Homepage> {
             appBar: AppBar(
               elevation: 0,
               centerTitle: true,
-              title: Text('Islami',
+              title: Text(AppLocalizations.of(context)!.app_title,
                   style: TextStyle(color: MythemeData.appbarcolor)),
               backgroundColor: Colors.transparent,
             ),
@@ -44,45 +42,39 @@ class _HomepageState extends State<Homepage> {
                 backgroundColor: MythemeData.primarycolor,
                 items: [
                   BottomNavigationBarItem(
-                      label: 'quran',
+                      label: AppLocalizations.of(context)!.quran,
                       icon: Image.asset(
                         'assets/images/quran.png',
                         width: 48,
                       )),
                   BottomNavigationBarItem(
-                      label: 'hadeth',
+                      label: AppLocalizations.of(context)!.hadeth,
                       icon: Image.asset(
                         'assets/images/quran-quran-book.png',
                         width: 48,
                       )),
                   BottomNavigationBarItem(
-                      label: 'sebha',
+                      label: AppLocalizations.of(context)!.tasbeh,
                       icon: Image.asset(
                         'assets/images/sebha-icon.png',
                         width: 48,
                       )),
                   BottomNavigationBarItem(
-                      label: 'radio',
+                      label: AppLocalizations.of(context)!.radio,
                       icon: Image.asset(
                         'assets/images/radio-icon.png',
                         width: 48,
                       )),
+                  BottomNavigationBarItem(
+                      label: AppLocalizations.of(context)!.settings,
+                      icon: Icon(Icons.settings, size: 35)),
                 ],
               ),
             ),
-            body: Container(child: GetCurrentPage()))
+            body: Container(child: Tabs[Currentpage]))
       ],
     );
   }
 
-  Widget GetCurrentPage() {
-    if (Currentpage == 0) {
-      return QuranTap();
-    } else if (Currentpage == 1) {
-      return HadeathTap();
-    } else if (Currentpage == 2) {
-      return SebhaTap();
-    } else
-      return RadioTap();
-  }
+
 }
