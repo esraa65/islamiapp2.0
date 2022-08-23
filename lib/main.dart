@@ -51,8 +51,3 @@ class MyApp extends StatelessWidget {
 }
 
 
-/*ThemeData(primaryColor: MythemeData.primarycolor,
-appBarTheme: AppBarTheme(
-iconTheme: IconThemeData(color: Colors.brown),
-),
-),*/
