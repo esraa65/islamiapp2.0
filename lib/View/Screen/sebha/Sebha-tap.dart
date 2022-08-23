@@ -41,8 +41,8 @@ class _SebhaTapState extends State<SebhaTap> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'add eltasbeh',
-              style: TextStyle(fontSize: 18),
+              'عدد التسبيحات',
+              style: TextStyle(fontSize: 28),
             ),
           ),
           Container(
