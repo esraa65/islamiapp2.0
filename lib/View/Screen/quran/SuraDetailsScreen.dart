@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamii_app/Model/SuraData.dart';
+import 'package:islamii_app/provider/AppconfigProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
 import '../../../main.dart';
@@ -18,24 +20,28 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     var args = ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
     LoadSuraDetailsFile(args.SuraIndex);
     return Stack(children: [
-      Image.asset('assets/images/main-background.png',
-          width: double.infinity, height: double.infinity, fit: BoxFit.fill),
+      Image.asset(
+          provider.isLightmode()
+              ? 'assets/images/main-background.png'
+              : "assets/images/bg_dark.png",
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.fill),
       Scaffold(
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
             title: Text('${args.SuraName}',
-                style: TextStyle(color: MythemeData.appbarcolor)),
+                style: TextStyle(fontSize: 25,color: provider.isLightmode()?Colors.black:Colors.white)),),
             backgroundColor: Colors.transparent,
-          ),
-          backgroundColor: Colors.transparent,
           body: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadiusDirectional.circular(60),
-                  color: Colors.white),
+                  color: provider.isLightmode()?Colors.white:constants.btmnavdark),
               child: verses.isEmpty
                   ? Center(
                       child: CircularProgressIndicator(
@@ -49,7 +55,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             verses[index] + '${index + 1}',
-                            style: TextStyle(fontSize: 23),
+                            style: TextStyle(fontSize: 23,color: provider.isLightmode()?Colors.black:constants.primarycolor),
                             textAlign: TextAlign.center,
                             textDirection: TextDirection.rtl,
                           ),
