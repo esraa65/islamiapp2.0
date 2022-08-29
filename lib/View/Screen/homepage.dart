@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:islamii_app/Model/Tabs_data.dart';
+import 'package:islamii_app/provider/AppconfigProvider.dart';
 import '../../constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
   static const String Routename = 'home';
@@ -15,66 +17,71 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Stack(
-      children: [
-        Image.asset('assets/images/main-background.png',
-            width: double.infinity, height: double.infinity, fit: BoxFit.fill),
-        Scaffold(
-            appBar: AppBar(
-              elevation: 0,
-              centerTitle: true,
-              title: Text(AppLocalizations.of(context)!.app_title,
-                  style: TextStyle(color: MythemeData.appbarcolor)),
-              backgroundColor: Colors.transparent,
-            ),
-            backgroundColor: Colors.transparent,
-            bottomNavigationBar: Theme(
-              data: Theme.of(context)
-                  .copyWith(canvasColor: MythemeData.primarycolor),
-              child: BottomNavigationBar(
-                onTap: (index) {
-                  Currentpage = index;
-                  setState(() {});
-                },
-                currentIndex: Currentpage,
-                selectedItemColor: MythemeData.selectediconcolor,
-                unselectedItemColor: MythemeData.unselectediconcolor,
-                backgroundColor: MythemeData.primarycolor,
-                items: [
-                  BottomNavigationBarItem(
-                      label: AppLocalizations.of(context)!.quran,
-                      icon: Image.asset(
-                        'assets/images/quran.png',
-                        width: 48,
-                      )),
-                  BottomNavigationBarItem(
-                      label: AppLocalizations.of(context)!.hadeth,
-                      icon: Image.asset(
-                        'assets/images/quran-quran-book.png',
-                        width: 48,
-                      )),
-                  BottomNavigationBarItem(
-                      label: AppLocalizations.of(context)!.tasbeh,
-                      icon: Image.asset(
-                        'assets/images/sebha-icon.png',
-                        width: 48,
-                      )),
-                  BottomNavigationBarItem(
-                      label: AppLocalizations.of(context)!.radio,
-                      icon: Image.asset(
-                        'assets/images/radio-icon.png',
-                        width: 48,
-                      )),
-                  BottomNavigationBarItem(
-                      label: AppLocalizations.of(context)!.settings,
-                      icon: Icon(Icons.settings, size: 35)),
-                ],
-              ),
-            ),
-            body: Container(child: Tabs[Currentpage]))
-      ],
+        children: [
+        Image.asset(
+        provider.isLightmode()
+        ? 'assets/images/main-background.png'
+        : 'assets/images/bg_dark.png',
+    width: double.infinity,
+    height: double.infinity,
+    fit: BoxFit.fill),
+    Scaffold(
+    appBar: AppBar(
+    elevation: 0,
+    centerTitle: true,
+    title: Text(AppLocalizations.of(context)!.app_title,
+    style: TextStyle(color: constants.appbarcolor)),
+    backgroundColor: Colors.transparent,
+    ),
+    backgroundColor: Colors.transparent,
+    bottomNavigationBar: BottomNavigationBar(
+    onTap: (index) {
+    Currentpage = index;
+    setState(() {});
+    },
+    currentIndex: Currentpage,
+    type: BottomNavigationBarType.fixed,
+    backgroundColor: provider.isLightmode()
+    ? constants.primarycolor
+        : constants.btmnavdark,
+    selectedItemColor: provider.isLightmode()?constants.selectediconcolor:constants.unselectediconcolor,
+    unselectedItemColor: constants.unselectediconcolor,
+    items: [
+    BottomNavigationBarItem(
+    label: AppLocalizations.of(context)!.quran,
+    icon: ImageIcon(AssetImage('assets/images/quran.png'),
+    size: 48,)
+    ),
+    BottomNavigationBarItem(
+    label: AppLocalizations.of(context)!.hadeth,
+    icon: ImageIcon(AssetImage(
+    'assets/images/quran-quran-book.png',),
+    size: 48,
+    )),
+    BottomNavigationBarItem(
+    label: AppLocalizations.of(context)!.tasbeh,
+    icon: ImageIcon(AssetImage(
+    'assets/images/sebha-icon.png',),
+    size: 48,
+    )),
+    BottomNavigationBarItem(
+    label: AppLocalizations.of(context)!.radio,
+    icon: ImageIcon(AssetImage(
+    'assets/images/radio-icon.png',),
+    size: 48,
+    )),
+    BottomNavigationBarItem(
+    label: AppLocalizations.of(context)!.settings,
+    icon: Icon(Icons.settings, size: 43)),
+    ],
+    ),
+    body: Container(child: Tabs[Currentpage])
+    )
+    ]
+    ,
     );
   }
-
-
 }

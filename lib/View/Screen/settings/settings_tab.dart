@@ -24,7 +24,7 @@ class _SettingsTabState extends State<SettingsTab> {
         children: [
           Text(
             'Langauge',
-            style: TextStyle(fontSize: 25),
+            style: TextStyle(fontSize: 25,color: provider.isLightmode()?Colors.black:Colors.white),
           ),
           InkWell(
             onTap: () {
@@ -50,7 +50,7 @@ class _SettingsTabState extends State<SettingsTab> {
           ),
           Text(
             'Theme',
-            style: TextStyle(fontSize: 25),
+            style: TextStyle(fontSize: 25,color: provider.isLightmode()?Colors.black:Colors.white),
           ),
           InkWell(
             onTap: () {
@@ -66,7 +66,7 @@ class _SettingsTabState extends State<SettingsTab> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'light',
+                    provider.isLightmode()?"Light":"Dark",
                     style: TextStyle(fontSize: 20),
                   ),
                   Icon(

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamii_app/Model/Hadethdataclass.dart';
 import 'package:islamii_app/View/Widget/Hadethnameitem.dart';
+import 'package:islamii_app/provider/AppconfigProvider.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
 
@@ -13,22 +16,24 @@ class HadeathTap extends StatefulWidget {
 class _HadeathTapState extends State<HadeathTap> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     if (allhadeth.isEmpty) LoadHadethFile();
     return Column(children: [
       Expanded(child: Image.asset('assets/images/hadeth_top_logo.png')),
       Container(
         height: 1,
         width: double.infinity,
-        color: MythemeData.primarycolor,
+        color: constants.primarycolor,
       ),
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text('all hadeth ', style: TextStyle(fontSize: 25)),
-      ),
+        child: Text('all hadeth ', style: TextStyle(fontSize: 25,color: provider.isLightmode()?Colors.black:Colors.white) )
+        ),
       Container(
         height: 1,
         width: double.infinity,
-        color: MythemeData.primarycolor,
+        color: constants.primarycolor,
       ),
       Expanded(
           child: Container(
@@ -43,7 +48,7 @@ class _HadeathTapState extends State<HadeathTap> {
                         return Container(
                           height: 1,
                           width: double.infinity,
-                          color: MythemeData.primarycolor,
+                          color: constants.primarycolor,
                         );
                       },
                       itemBuilder: (buildContext, index) {
